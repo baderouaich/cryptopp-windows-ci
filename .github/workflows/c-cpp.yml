@@ -39,6 +39,9 @@ jobs:
           vs-prerelease: true
           msbuild-architecture: x64
 
+      - name: Display tree structure of PRE build
+        run: tree /f /a .
+
       - name: Build cryptest Solution
         run: |
           msbuild cryptdll.vcxproj -property:Configuration=Release,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
@@ -48,4 +51,5 @@ jobs:
         
       - name: Run cryptest.exe
         run: cryptest.exe
+
         
