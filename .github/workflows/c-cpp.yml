@@ -33,7 +33,7 @@ jobs:
 
       - name: Build cryptest Solution
         run: |
-          msbuild cryptest.vcxproj -property:Configuration=Debug,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
+          msbuild cryptest.sln -property:Configuration=Debug,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
 
       - name: Display tree structure of POST build
         run: tree /f /a .
