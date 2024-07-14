@@ -50,4 +50,4 @@ jobs:
         run: tree /f /a .
         
       - name: Run cryptest.exe
-        run: Output\Debug\cryptest.exe        
+        run: Win32\Output\Debug\cryptest.exe     
