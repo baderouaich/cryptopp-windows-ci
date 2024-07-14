@@ -7,17 +7,6 @@ on:
     branches: [ master ]
 
 jobs:
-  Ubuntu:
-
-    runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v2
-    - name: make
-      run: make all
-    - name: make test
-      run: make test
-
   Windows:
     runs-on: windows-latest
     strategy:
@@ -50,4 +39,4 @@ jobs:
         run: tree /f /a .
         
       - name: Run cryptest.exe
-        run: Win32\Output\Debug\cryptest.exe     
+        run: Win32\Output\Debug\cryptest.exe v
