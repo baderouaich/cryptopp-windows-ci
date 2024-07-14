@@ -7,7 +7,7 @@ on:
     branches: [ master ]
 
 jobs:
-  build:
+  Ubuntu:
 
     runs-on: ubuntu-latest
 
@@ -17,3 +17,35 @@ jobs:
       run: make all
     - name: make test
       run: make test
+
+  Windows:
+    runs-on: windows-latest
+    strategy:
+      matrix:
+        architecture: [ x64 ]
+        build-platform: [ x64 ]
+
+    defaults:
+      run:
+        shell: cmd
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Setup MSBuild
+        uses: microsoft/setup-msbuild@v2
+        with:
+          vs-version: '17.9.6' # Stable release	2022 17.9.6 / 15 April 2024
+          vs-prerelease: true
+          msbuild-architecture: x64
+
+      - name: Build cryptest Solution
+        run: |
+          msbuild cryptdll.vcxproj -property:Configuration=Release,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
+
+      - name: Display tree structure of POST build
+        run: tree /f /a .
+        
+      - name: Run cryptest.exe
+        run: cryptest.exe
+        
