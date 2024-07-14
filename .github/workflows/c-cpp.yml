@@ -44,12 +44,10 @@ jobs:
 
       - name: Build cryptest Solution
         run: |
-          msbuild cryptdll.vcxproj -property:Configuration=Release,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
+          msbuild cryptdll.vcxproj -property:Configuration=Debug,MultiProcessorCompilation=true -maxCpuCount -verbosity:minimal -noLogo
 
       - name: Display tree structure of POST build
         run: tree /f /a .
         
       - name: Run cryptest.exe
-        run: cryptest.exe
-
-        
+        run: Output\Debug\cryptest.exe        
